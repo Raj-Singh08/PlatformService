@@ -10,22 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-        - name: Setup .NET
-          uses: actions/setup-dotnet@v4
-          with:
-            dotnet-version: '9.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
 
-        - name: Restore NuGet Packages
-          run: dotnet restore
+      - name: Restore NuGet Packages
+        run: dotnet restore
 
-        - name: Build Project
-          run: dotnet build --configuration Release --no-restore
+      - name: Build Project
+        run: dotnet build --configuration Release --no-restore
 
-        - name: Publish Application
-          run: dotnet publish --configuration Release --no-build --output ./publish
+      - name: Publish Application
+        run: dotnet publish --configuration Release --no-build --output ./publish
 
-        - name: Upload Build Artifact
-          uses: actions/upload-artifact@v4
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: platformservice-publish
+          path: ./publish
