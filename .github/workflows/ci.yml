@@ -24,11 +24,14 @@ jobs:
       - name: Build Project
         run: dotnet build --configuration Release --no-restore
 
-      - name: Publish Application
-        run: dotnet publish --configuration Release --no-build --output ./publish
+      # - name: Publish Application
+      #   run: dotnet publish --configuration Release --no-build --output ./publish
 
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: platformservice-publish
-          path: ./publish
+      # - name: Upload Build Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: platformservice-publish
+      #     path: ./publish
+
+      - name: Build Docker Image
+        run: docker build -t rajsingh/08platformservice .
